@@ -1,2 +1,2 @@
 # simple_text_classification
-simple text classification CLI
+simple text classification example
