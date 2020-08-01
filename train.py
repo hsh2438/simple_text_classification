@@ -1,11 +1,11 @@
 import os
+import configparser
 import tensorflow as tf
 
 from preprocessor import Preprocessor
 from model import lstm_classifier_model
 
 
-# parameter
 # parameter
 config = configparser.ConfigParser()
 config.read('config.ini')
