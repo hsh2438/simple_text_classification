@@ -1,4 +1,5 @@
 import os
+import configparser
 import tensorflow as tf
 
 from flask import Flask, request, jsonify
@@ -9,9 +10,11 @@ from model import lstm_classifier_model
 
 
 # parameter
-data_dir = 'data'
-max_len = 64
-hidden_size = 64
+config = configparser.ConfigParser()
+config.read('config.ini')
+data_dir = config['config']['data_dir']
+max_len = int(config['config']['max_len'])
+hidden_size = int(config['config']['hidden_size'])
 
 # create preprocessor
 preprocessor = Preprocessor(data_dir, max_len)
@@ -48,4 +51,4 @@ class Predict(Resource):
         return jsonify(result)
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=12341)
+    app.run(host='0.0.0.0', port=config['service']['port'])
