@@ -1,4 +1,5 @@
 import os
+import configparser
 import tensorflow as tf
 
 from preprocessor import Preprocessor
@@ -6,10 +7,12 @@ from model import lstm_classifier_model
 
 
 # parameter
-epochs = 50
-max_len = 64
-hidden_size = 64
-data_dir = 'data'
+config = configparser.ConfigParser()
+config.read('config.ini')
+data_dir = config['config']['data_dir']
+max_len = int(config['config']['max_len'])
+hidden_size = int(config['config']['hidden_size'])
+epochs = int(config['train']['epochs'])
 
 # create preprocessor and data loading
 preprocessor = Preprocessor(data_dir, max_len)
