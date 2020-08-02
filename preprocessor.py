@@ -21,6 +21,11 @@ class Preprocessor:
                     data.append(line.strip())
         return data
 
+    def __save_file__(self, data_file, data):
+        with open(os.path.join(self.data_dir, data_file), 'w', encoding='utf-8') as fw:
+            for line in data:
+                fw.write(line+'\n')
+
     # load train and test data
     def load_data(self):
         self.train_data = self.__load_file__('train.tsv')
@@ -43,6 +48,9 @@ class Preprocessor:
                     self.vocab.append(token)
             if not label in self.labels:
                 self.labels.append(label)
+
+        self.__save_file__('vocab.txt', self.vocab)
+        self.__save_file__('labels.txt', self.labels)
 
     # tokenize
     def tokenize(self, text):
