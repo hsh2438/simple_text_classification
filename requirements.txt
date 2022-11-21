@@ -1,4 +1,4 @@
-tensorflow-cpu==2.2.0
+tensorflow-cpu==2.8.4
 flask==1.1.2
 flask-restplus==0.13.0
 werkzeug==0.16.1
